@@ -6,11 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-<<<<<<< HEAD
 name: Build and Push Image to ACR 
-=======
-name: Build and Push Image to GitHub Package 
->>>>>>> 8bd63d973f2c01b3ad37b2c9c073c6d197666628
 
 on:
   workflow_dispatch
@@ -29,8 +25,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-<<<<<<< HEAD
       run: mvn clean package jib:build -Djib.to.auth.username=pcfaks -Djib.to.auth.password=${{secrets.ACR_PWD}} --file pom.xml
-=======
-      run: mvn clean package jib:build -Djib.to.auth.username=keshari0840 -Djib.to.auth.password=${{secrets.TOKEN_GITHUB}} --file pom.xml
->>>>>>> 8bd63d973f2c01b3ad37b2c9c073c6d197666628
