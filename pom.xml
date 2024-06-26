@@ -118,7 +118,7 @@
 						</jvmFlags>
 					</container>
 					<to>
-						<image>pcfaks.azurecr.io/helloworld:${maven.build.timestamp}</image>
+						<image>ghcr.io/keshari0840/helloworld:${maven.build.timestamp}</image>
 					</to>
 				</configuration>
 				<executions>
