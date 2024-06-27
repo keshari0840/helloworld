@@ -56,4 +56,4 @@ jobs:
           helm upgrade --install ${{ env.HELM_CHART }} ./java-chart \  
             --namespace ${{ env.AKS_NAMESPACE }} \  
             --set image.repository=${REGISTRY_PACKAGE} \  
-            --set image.tag=${{ github.sha }}  
+            --set image.tag=${{ github.sha }}
