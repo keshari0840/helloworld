@@ -9,7 +9,7 @@ env:
   REGISTRY_PACKAGE: ghcr.io/keshari0840/helloworld:20240626-195250734 # Enter the name of the GitHub Package Registry package  
   HELM_CHART: java-chart # Enter the name of the Helm chart  
   AKS_CLUSTER: PcfToAksMigration # Enter the name of your AKS cluster  
-  AKS_NAMESPACE: <aks_namespace> # Enter the namespace where you want to deploy the image
+  AKS_NAMESPACE: praticetest # Enter the namespace where you want to deploy the image
   AKS_RESOURCE_GROUP: rg_fedex_east_us # Enter the name of your AKS resource group
   
 jobs:  
