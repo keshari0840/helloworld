@@ -1,4 +1,4 @@
-name: Deploy to AKS  
+name: Deploy to AKS using Helm Chart
   
 on:  
   push:  
@@ -7,9 +7,10 @@ on:
   
 env:  
   REGISTRY_PACKAGE: <registry_package_name> # Enter the name of the GitHub Package Registry package  
-  HELM_CHART: <helm_chart_name> # Enter the name of the Helm chart  
-  AKS_CLUSTER: <aks_cluster_name> # Enter the name of your AKS cluster  
-  AKS_NAMESPACE: <aks_namespace> # Enter the namespace where you want to deploy the image  
+  HELM_CHART: java-chart # Enter the name of the Helm chart  
+  AKS_CLUSTER: PcfToAksMigration # Enter the name of your AKS cluster  
+  AKS_NAMESPACE: <aks_namespace> # Enter the namespace where you want to deploy the image
+  AKS_RESOURCE_GROUP: rg_fedex_east_us # Enter the name of your AKS resource group
   
 jobs:  
   deploy:  
@@ -34,13 +35,13 @@ jobs:
   
       - name: Fetch image from GitHub Package  
         run: |  
-          echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token  
+          echo ${{ secrets.TOKEN_GITHUB }} | gh auth login --with-token  
           gh package download -y ghcr.io/${{ github.repository_owner }}/${{ env.REGISTRY_PACKAGE }}@${{ github.sha }} -R  
   
       - name: Deploy to AKS using Helm  
         run: |  
           az aks get-credentials --name ${{ env.AKS_CLUSTER }} --resource-group ${{ env.AKS_RESOURCE_GROUP }}  
-          helm upgrade --install ${{ env.HELM_CHART }} ./path/to/helm/chart \  
+          helm upgrade --install ${{ env.HELM_CHART }} ./java-chart \  
             --namespace ${{ env.AKS_NAMESPACE }} \  
             --set image.repository=${REGISTRY_PACKAGE} \  
             --set image.tag=${{ github.sha }}  
